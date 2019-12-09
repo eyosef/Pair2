@@ -1,6 +1,8 @@
 import arterraWines from "../db/virginiaWine/arterraWines";
 import blueStone from "../db/virginiaWine/blueStone";
 import brentManor from "../db/virginiaWine/brentManor";
+import cardinalPoint from "../db/virginiaWine/cardinalPoint";
+import castleGlen from "../db/virginiaWine/castleGlen";
 import chateauMorrisette from "../db/virginiaWine/chateauMorrisette";
 import copper from "../db/virginiaWine/copper";
 import crossKeysVineyards from "../db/virginiaWine/crossKeysVineyards";
@@ -17,6 +19,8 @@ const virginiaWine = [
   ...arterraWines,
   ...blueStone,
   ...brentManor,
+  ...cardinalPoint,
+  ...castleGlen,
   ...chateauMorrisette,
   ...copper,
   ...crossKeysVineyards,
