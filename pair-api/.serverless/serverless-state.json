@@ -177,7 +177,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/pair-api/dev/1576004442600-2019-12-10T19:00:42.600Z/pair-api.zip"
+                "S3Key": "serverless/pair-api/dev/1576005926112-2019-12-10T19:25:26.112Z/pair-api.zip"
               },
               "FunctionName": "pair-api-dev-app",
               "Handler": "index.handler",
@@ -196,14 +196,14 @@
               "IamRoleLambdaExecution"
             ]
           },
-          "AppLambdaVersion5VTrv9gVNFMGRTqqGMD34taItrX4cNINfCe7M9viyHo": {
+          "AppLambdaVersionzrJXt6WNyvL89srV6d90eC0BPaSM8vESswbB4mABI": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "AppLambdaFunction"
               },
-              "CodeSha256": "EOgDiKuCaRD+Nhqym1G/ehwt+4WQQPtRh95HEvhVD5w="
+              "CodeSha256": "eTtv7J2AHB3rsvTR5Wg1kKST7UXhpWzgqIlB1esk1RA="
             }
           },
           "ApiGatewayRestApi": {
@@ -287,7 +287,7 @@
               "MethodResponses": []
             }
           },
-          "ApiGatewayDeployment1576004426490": {
+          "ApiGatewayDeployment1576005907802": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -369,7 +369,7 @@
           "AppLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "AppLambdaVersion5VTrv9gVNFMGRTqqGMD34taItrX4cNINfCe7M9viyHo"
+              "Ref": "AppLambdaVersionzrJXt6WNyvL89srV6d90eC0BPaSM8vESswbB4mABI"
             }
           },
           "ServiceEndpoint": {
@@ -466,6 +466,9 @@
       },
       "vpc": {}
     },
+    "plugins": [
+      "serverless-dynamodb-local"
+    ],
     "pluginsData": {},
     "functions": {
       "app": {
@@ -521,7 +524,7 @@
     "artifact": "/Users/eden/Documents/GitHub/Pair2./pair-api/.serverless/pair-api.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/pair-api/dev/1576004442600-2019-12-10T19:00:42.600Z",
+    "artifactDirectoryName": "serverless/pair-api/dev/1576005926112-2019-12-10T19:25:26.112Z",
     "artifact": "pair-api.zip"
   }
 }

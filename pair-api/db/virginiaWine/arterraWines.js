@@ -31,4 +31,4 @@ const arterraWines = [
   }
 ];
 
-export default arterraWines;
+module.exports = arterraWines;

@@ -23,7 +23,7 @@ const setResults = async () => {
 
   const test = data(".prod-summary");
 
-  debugger;
+  // debugger;
 
   //   return $(".prod-summary").map(node => {
   //     debugger;
