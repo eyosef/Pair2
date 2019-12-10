@@ -177,7 +177,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/pair-api/dev/1576008200153-2019-12-10T20:03:20.153Z/pair-api.zip"
+                "S3Key": "serverless/pair-api/dev/1576011122904-2019-12-10T20:52:02.904Z/pair-api.zip"
               },
               "FunctionName": "pair-api-dev-app",
               "Handler": "app.handler",
@@ -196,14 +196,14 @@
               "IamRoleLambdaExecution"
             ]
           },
-          "AppLambdaVersionKCihJYPh3KUSjCGeGi1awY432tSmwHEoypBMxsaufA": {
+          "AppLambdaVersionv7ym7uMI5vPImyTu3uHOGYJSuzdYCQjFOkEbpLDU": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "AppLambdaFunction"
               },
-              "CodeSha256": "6s0qQ1Soi6k01o5ymDzzcSBB4LS26zsdJhP6AucKiRo="
+              "CodeSha256": "fYVREWxTEYno14LH86hjbsBXeXrkeLkuzYpbBOpZ4kk="
             }
           },
           "ApiGatewayRestApi": {
@@ -287,7 +287,7 @@
               "MethodResponses": []
             }
           },
-          "ApiGatewayDeployment1576008179448": {
+          "ApiGatewayDeployment1576011105702": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -369,7 +369,7 @@
           "AppLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "AppLambdaVersionKCihJYPh3KUSjCGeGi1awY432tSmwHEoypBMxsaufA"
+              "Ref": "AppLambdaVersionv7ym7uMI5vPImyTu3uHOGYJSuzdYCQjFOkEbpLDU"
             }
           },
           "ServiceEndpoint": {
@@ -524,7 +524,7 @@
     "artifact": "/Users/eden/Documents/GitHub/Pair2./pair-api/.serverless/pair-api.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/pair-api/dev/1576008200153-2019-12-10T20:03:20.153Z",
+    "artifactDirectoryName": "serverless/pair-api/dev/1576011122904-2019-12-10T20:52:02.904Z",
     "artifact": "pair-api.zip"
   }
 }

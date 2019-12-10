@@ -5,9 +5,7 @@ const app = express();
 
 const virginiaWine = require("./db/virginiaWine");
 
-const filterByWineType = require("./db/utils/helpers");
-debugger;
-// const test = filterByWineType(virginiaWine, "red");
+const helper = require("./db/utils/helpers");
 
 app.use(bodyParser.json({ strict: false }));
 
@@ -15,8 +13,8 @@ app.get("/pair/wine", (req, res) => {
   res.send({
     success: "true",
     virginiaWine: virginiaWine,
-    redWine: virginiaWine.filter(wine => wine.wineType === "red"),
-    whiteWine: virginiaWine.filter(wine => wine.wineType === "white")
+    redWine: helper.filterByWineType(virginiaWine, "red"),
+    whiteWine: helper.filterByWineType(virginiaWine, "white")
   });
 });
 
