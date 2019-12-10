@@ -73,4 +73,4 @@ const blueStone = [
   }
 ];
 
-export default blueStone;
+module.exports = blueStone;

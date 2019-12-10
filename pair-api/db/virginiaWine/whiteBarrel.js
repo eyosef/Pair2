@@ -91,4 +91,4 @@ const whiteBarrel = [
   }
 ];
 
-export default whiteBarrel;
+module.exports = whiteBarrel;

@@ -1,19 +1,19 @@
-import arterraWines from "../db/virginiaWine/arterraWines";
-import blueStone from "../db/virginiaWine/blueStone";
-import brentManor from "../db/virginiaWine/brentManor";
-import cardinalPoint from "../db/virginiaWine/cardinalPoint";
-import castleGlen from "../db/virginiaWine/castleGlen";
-import chateauMorrisette from "../db/virginiaWine/chateauMorrisette";
-import copper from "../db/virginiaWine/copper";
-import crossKeysVineyards from "../db/virginiaWine/crossKeysVineyards";
-import estateVineyards from "../db/virginiaWine/estateVineyards";
-import gilesMountain from "../db/virginiaWine/gilesMountain";
-import glenManor from "../db/virginiaWine/glenManor";
-import ironHeart from "../db/virginiaWine/ironHeart";
-import stinson from "../db/virginiaWine/stinson";
-import stanburn from "../db/virginiaWine/stanburn";
-import villaAppalaccia from "../db/virginiaWine/villaAppalaccia";
-import whiteBarrel from "../db/virginiaWine/whiteBarrel";
+const arterraWines = require("./virginiaWine/arterraWines");
+const blueStone = require("./virginiaWine/blueStone");
+const brentManor = require("./virginiaWine/brentManor");
+const cardinalPoint = require("./virginiaWine/cardinalPoint");
+const castleGlen = require("./virginiaWine/castleGlen");
+const chateauMorrisette = require("./virginiaWine/chateauMorrisette");
+const copper = require("./virginiaWine/copper");
+const crossKeysVineyards = require("./virginiaWine/crossKeysVineyards");
+const estateVineyards = require("./virginiaWine/estateVineyards");
+const gilesMountain = require("./virginiaWine/gilesMountain");
+const glenManor = require("./virginiaWine/glenManor");
+const ironHeart = require("./virginiaWine/ironHeart");
+const stinson = require("./virginiaWine/stinson");
+const stanburn = require("./virginiaWine/stanburn");
+const villaAppalaccia = require("./virginiaWine/villaAppalaccia");
+const whiteBarrel = require("./virginiaWine/whiteBarrel");
 
 const virginiaWine = [
   ...arterraWines,
@@ -34,4 +34,6 @@ const virginiaWine = [
   ...whiteBarrel
 ];
 
-export default virginiaWine;
+// export default virginiaWine;
+
+module.exports = virginiaWine;

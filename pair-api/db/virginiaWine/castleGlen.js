@@ -56,4 +56,4 @@ const castleGlen = [
   }
 ];
 
-export default castleGlen;
+module.exports = castleGlen;

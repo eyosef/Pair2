@@ -124,4 +124,4 @@ const ironHeart = [
   }
 ];
 
-export default ironHeart;
+module.exports = ironHeart;

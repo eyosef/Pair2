@@ -16,4 +16,4 @@ const crossKeys = [
   }
 ];
 
-export default crossKeys;
+module.exports = crossKeys;

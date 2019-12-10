@@ -8,7 +8,12 @@ const stanburn = [
       "https://images.pexels.com/photos/936801/pexels-photo-936801.jpeg?cs=srgb&dl=abstract-art-artistic-936801.jpg&fm=jpg",
     flavorProfile: ["acidity"],
     spiceFlavorProfile: [],
-    fruitFlavorProfile: ["peach", "honeydew (melon)", "tropical fruit", "citrus"],
+    fruitFlavorProfile: [
+      "peach",
+      "honeydew (melon)",
+      "tropical fruit",
+      "citrus"
+    ],
     cerealGrassFlavorProfile: [],
     barrelType: ["stainless steel"],
     winery: "Stanburn Winery",
@@ -148,7 +153,13 @@ const stanburn = [
       "https://images.pexels.com/photos/1891777/pexels-photo-1891777.jpeg?cs=srgb&dl=abstract-abstract-expressionism-abstract-painting-1891777.jpg&fm=jpg",
     flavorProfile: ["leather", "cigar box"],
     spiceFlavorProfile: ["spice"],
-    fruitFlavorProfile: ["black cherry", "blackberry", "plum", "cranberry", "tannin"],
+    fruitFlavorProfile: [
+      "black cherry",
+      "blackberry",
+      "plum",
+      "cranberry",
+      "tannin"
+    ],
     cerealGrassFlavorProfile: ["earth"],
     barrelType: ["stainless steel"],
     winery: "Stanburn Winery",
@@ -195,4 +206,4 @@ const stanburn = [
   }
 ];
 
-export default stanburn;
+module.exports = stanburn;

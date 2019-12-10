@@ -15,4 +15,4 @@ const glenManor = [
   }
 ];
 
-export default glenManor;
+module.exports = glenManor;

@@ -95,4 +95,4 @@ const cardinalPoint = [
   }
 ];
 
-export default cardinalPoint;
+module.exports = cardinalPoint;

@@ -58,7 +58,12 @@ const chateauMorrisette = [
     dry: true,
     sweet: false,
     flavorProfile: [],
-    fruitFlavorProfile: ["pineapple", "lemon zest", "apple", "cantaloupe (melon)"],
+    fruitFlavorProfile: [
+      "pineapple",
+      "lemon zest",
+      "apple",
+      "cantaloupe (melon)"
+    ],
     cerealGrassFlavorProfile: ["white flowers"],
     barrelType: ["steel"],
     winery: "Chateau Morrisette",
@@ -152,4 +157,4 @@ const chateauMorrisette = [
   }
 ];
 
-export default chateauMorrisette;
+module.exports = chateauMorrisette;

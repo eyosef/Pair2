@@ -55,4 +55,4 @@ const copper = [
   }
 ];
 
-export default copper;
+module.exports = copper;

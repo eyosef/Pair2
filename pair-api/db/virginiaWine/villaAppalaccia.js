@@ -73,4 +73,4 @@ const villaAppalaccia = [
   }
 ];
 
-export default villaAppalaccia;
+module.exports = villaAppalaccia;

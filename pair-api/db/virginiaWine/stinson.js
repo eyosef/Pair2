@@ -29,4 +29,4 @@ const stinson = [
   }
 ];
 
-export default stinson;
+module.exports = stinson;

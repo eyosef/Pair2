@@ -119,5 +119,4 @@ const gilesMountain = [
     foodPair: []
   }
 ];
-
-export default gilesMountain;
+module.exports = gilesMountain;

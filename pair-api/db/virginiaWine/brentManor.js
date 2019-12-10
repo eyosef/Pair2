@@ -93,4 +93,4 @@ const brentManor = [
   }
 ];
 
-export default brentManor;
+module.exports = brentManor;

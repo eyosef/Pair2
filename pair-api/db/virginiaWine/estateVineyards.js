@@ -24,4 +24,4 @@ const estateVineyards = [
   }
 ];
 
-export default estateVineyards;
+module.exports = estateVineyards;
