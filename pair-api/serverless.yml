@@ -1,4 +1,5 @@
-# serverless.yml
+plugins:
+  - serverless-dynamodb-local
 
 service: pair-api
 
@@ -7,26 +8,32 @@ provider:
   runtime: nodejs10.x
   stage: dev
   region: us-east-1
-  iamRoleStatements:
+  iamRoleStatements: # permissions for all of your functions can be set here
     - Effect: Allow
-      Action:
+      Action: # Gives permission to DynamoDB tables in a specific region
+        - dynamodb:DescribeTable
         - dynamodb:Query
         - dynamodb:Scan
         - dynamodb:GetItem
         - dynamodb:PutItem
         - dynamodb:UpdateItem
         - dynamodb:DeleteItem
-      Resource:
-        - { "Fn::GetAtt": ["wineTable", "Arn"] }
-  environment:
-    WINE_TABLE: wineTable
+      Resource: "arn:aws:dynamodb:us-east-1:*:*"
 
-resources: # CloudFormation template syntax
+functions:
+  app:
+    handler: index.handler
+    events:
+      - http:
+          method: GET
+          path: /pair/wine
+          private: false
+resources:
   Resources:
-    wineTable:
-      Type: AWS::DynamoDB::Table
+    WineDynamoDbTable:
+      Type: "AWS::DynamoDB::Table"
+      DeletionPolicy: Retain
       Properties:
-        TableName: wineTable
         AttributeDefinitions:
           - AttributeName: name
             AttributeType: S
@@ -36,9 +43,4 @@ resources: # CloudFormation template syntax
         ProvisionedThroughput:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
-functions:
-  app:
-    handler: index.handler
-    events:
-      - http: ANY /pair/wine
-      - http: "ANY {proxy+}"
+        TableName: WineDynamoDbTable

@@ -121,6 +121,7 @@
                 {
                   "Effect": "Allow",
                   "Action": [
+                    "dynamodb:DescribeTable",
                     "dynamodb:Query",
                     "dynamodb:Scan",
                     "dynamodb:GetItem",
@@ -128,14 +129,7 @@
                     "dynamodb:UpdateItem",
                     "dynamodb:DeleteItem"
                   ],
-                  "Resource": [
-                    {
-                      "Fn::GetAtt": [
-                        "wineTable",
-                        "Arn"
-                      ]
-                    }
-                  ]
+                  "Resource": "arn:aws:dynamodb:us-east-1:*:*"
                 }
               ]
             }
@@ -164,7 +158,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/pair-api/dev/1575930145348-2019-12-09T22:22:25.348Z/pair-api.zip"
+          "S3Key": "serverless/pair-api/dev/1576004442600-2019-12-10T19:00:42.600Z/pair-api.zip"
         },
         "FunctionName": "pair-api-dev-app",
         "Handler": "index.handler",
@@ -176,26 +170,21 @@
           ]
         },
         "Runtime": "nodejs10.x",
-        "Timeout": 6,
-        "Environment": {
-          "Variables": {
-            "WINE_TABLE": "wineTable"
-          }
-        }
+        "Timeout": 6
       },
       "DependsOn": [
         "AppLogGroup",
         "IamRoleLambdaExecution"
       ]
     },
-    "AppLambdaVersionM71wYSkTPguBJrp9O6Y3gY4FMB9IYzUNoAgOUa0jmY": {
+    "AppLambdaVersion5VTrv9gVNFMGRTqqGMD34taItrX4cNINfCe7M9viyHo": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "AppLambdaFunction"
         },
-        "CodeSha256": "T6oo/20FFv1eDBb2p8OdVF11Jr2KPSFRQQHfbTEruMs="
+        "CodeSha256": "EOgDiKuCaRD+Nhqym1G/ehwt+4WQQPtRh95HEvhVD5w="
       }
     },
     "ApiGatewayRestApi": {
@@ -236,25 +225,10 @@
         }
       }
     },
-    "ApiGatewayResourceProxyVar": {
-      "Type": "AWS::ApiGateway::Resource",
-      "Properties": {
-        "ParentId": {
-          "Fn::GetAtt": [
-            "ApiGatewayRestApi",
-            "RootResourceId"
-          ]
-        },
-        "PathPart": "{proxy+}",
-        "RestApiId": {
-          "Ref": "ApiGatewayRestApi"
-        }
-      }
-    },
-    "ApiGatewayMethodPairWineAny": {
+    "ApiGatewayMethodPairWineGet": {
       "Type": "AWS::ApiGateway::Method",
       "Properties": {
-        "HttpMethod": "ANY",
+        "HttpMethod": "GET",
         "RequestParameters": {},
         "ResourceId": {
           "Ref": "ApiGatewayResourcePairWine"
@@ -294,50 +268,7 @@
         "MethodResponses": []
       }
     },
-    "ApiGatewayMethodProxyVarAny": {
-      "Type": "AWS::ApiGateway::Method",
-      "Properties": {
-        "HttpMethod": "ANY",
-        "RequestParameters": {},
-        "ResourceId": {
-          "Ref": "ApiGatewayResourceProxyVar"
-        },
-        "RestApiId": {
-          "Ref": "ApiGatewayRestApi"
-        },
-        "ApiKeyRequired": false,
-        "AuthorizationType": "NONE",
-        "Integration": {
-          "IntegrationHttpMethod": "POST",
-          "Type": "AWS_PROXY",
-          "Uri": {
-            "Fn::Join": [
-              "",
-              [
-                "arn:",
-                {
-                  "Ref": "AWS::Partition"
-                },
-                ":apigateway:",
-                {
-                  "Ref": "AWS::Region"
-                },
-                ":lambda:path/2015-03-31/functions/",
-                {
-                  "Fn::GetAtt": [
-                    "AppLambdaFunction",
-                    "Arn"
-                  ]
-                },
-                "/invocations"
-              ]
-            ]
-          }
-        },
-        "MethodResponses": []
-      }
-    },
-    "ApiGatewayDeployment1575930128406": {
+    "ApiGatewayDeployment1576004426490": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -346,8 +277,7 @@
         "StageName": "dev"
       },
       "DependsOn": [
-        "ApiGatewayMethodPairWineAny",
-        "ApiGatewayMethodProxyVarAny"
+        "ApiGatewayMethodPairWineGet"
       ]
     },
     "AppLambdaPermissionApiGateway": {
@@ -387,10 +317,10 @@
         }
       }
     },
-    "wineTable": {
+    "WineDynamoDbTable": {
       "Type": "AWS::DynamoDB::Table",
+      "DeletionPolicy": "Retain",
       "Properties": {
-        "TableName": "wineTable",
         "AttributeDefinitions": [
           {
             "AttributeName": "name",
@@ -406,7 +336,8 @@
         "ProvisionedThroughput": {
           "ReadCapacityUnits": 1,
           "WriteCapacityUnits": 1
-        }
+        },
+        "TableName": "WineDynamoDbTable"
       }
     }
   },
@@ -419,7 +350,7 @@
     "AppLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "AppLambdaVersionM71wYSkTPguBJrp9O6Y3gY4FMB9IYzUNoAgOUa0jmY"
+        "Ref": "AppLambdaVersion5VTrv9gVNFMGRTqqGMD34taItrX4cNINfCe7M9viyHo"
       }
     },
     "ServiceEndpoint": {
