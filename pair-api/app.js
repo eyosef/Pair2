@@ -1,33 +1,22 @@
 const serverless = require("serverless-http");
-import express from "express";
-import bodyParser from "body-parser";
-
-import virginiaWine from "./db/virginiaWine";
-import marylandWine from "./db/marylandWine";
-
+const bodyParser = require("body-parser");
+const express = require("express");
 const app = express();
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+const virginiaWine = require("./db/virginiaWine");
+
+const filterByWineType = require("./db/utils/helpers");
+debugger;
+// const test = filterByWineType(virginiaWine, "red");
+
+app.use(bodyParser.json({ strict: false }));
 
 app.get("/pair/wine", (req, res) => {
   res.send({
     success: "true",
-    message: "VA Wine retrieved successfully",
-    virginiaWine: virginiaWine //temporary
-    // marylandWine: marylandWine, //temporary
-    // redWine: [
-    //   /**
-    //    * TODO: filter virginiaWine and marylandWine
-    //    * to return only RED wine
-    //    */
-    // ],
-    // whiteWhine: [
-    //   /**
-    //    * TODO: filter virginiaWine and marylandWine
-    //    * to return only WHITE wine
-    //    */
-    // ]
+    virginiaWine: virginiaWine,
+    redWine: virginiaWine.filter(wine => wine.wineType === "red"),
+    whiteWine: virginiaWine.filter(wine => wine.wineType === "white")
   });
 });
 
@@ -38,14 +27,3 @@ app.get("/pair/wine", (req, res) => {
 // });
 
 module.exports.handler = serverless(app);
-
-/**
- * NOTE:
- * Info on this file can be found here
- *
- * https://medium.com/@purposenigeria/build-a-restful-api-with-node-js-and-express-js-d7e59c7a3dfb
- */
-
-/**
- * https://91j3tcvs6i.execute-api.us-east-1.amazonaws.com/dev/pair/wine
- */

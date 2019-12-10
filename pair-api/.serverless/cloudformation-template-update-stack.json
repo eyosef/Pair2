@@ -158,10 +158,10 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/pair-api/dev/1576006987850-2019-12-10T19:43:07.850Z/pair-api.zip"
+          "S3Key": "serverless/pair-api/dev/1576008200153-2019-12-10T20:03:20.153Z/pair-api.zip"
         },
         "FunctionName": "pair-api-dev-app",
-        "Handler": "index.handler",
+        "Handler": "app.handler",
         "MemorySize": 1024,
         "Role": {
           "Fn::GetAtt": [
@@ -177,14 +177,14 @@
         "IamRoleLambdaExecution"
       ]
     },
-    "AppLambdaVersionVQD7AYqN0tObo0XVzPYfVLFClWTvcNp6oi946kDk": {
+    "AppLambdaVersionKCihJYPh3KUSjCGeGi1awY432tSmwHEoypBMxsaufA": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "AppLambdaFunction"
         },
-        "CodeSha256": "pLKAhUOPm9FO/oPyYukU+t8kx79M/zXgyhZwUVlLy28="
+        "CodeSha256": "6s0qQ1Soi6k01o5ymDzzcSBB4LS26zsdJhP6AucKiRo="
       }
     },
     "ApiGatewayRestApi": {
@@ -268,7 +268,7 @@
         "MethodResponses": []
       }
     },
-    "ApiGatewayDeployment1576006966390": {
+    "ApiGatewayDeployment1576008179448": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -350,7 +350,7 @@
     "AppLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "AppLambdaVersionVQD7AYqN0tObo0XVzPYfVLFClWTvcNp6oi946kDk"
+        "Ref": "AppLambdaVersionKCihJYPh3KUSjCGeGi1awY432tSmwHEoypBMxsaufA"
       }
     },
     "ServiceEndpoint": {

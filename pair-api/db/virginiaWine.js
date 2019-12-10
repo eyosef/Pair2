@@ -34,6 +34,4 @@ const virginiaWine = [
   ...whiteBarrel
 ];
 
-// export default virginiaWine;
-
 module.exports = virginiaWine;
