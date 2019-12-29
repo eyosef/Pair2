@@ -1,48 +1,117 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
 
-const site1 = "http://868estatevineyards.orderport.net/wines/New-Releases";
-const site2 = "(https://www.arterrawines.com/wine-store/)";
-const site3 = "https://www.bluestonevineyard.com/wine.html";
+const urls = require("./utils/url.config");
+const helper = require("./utils/helper.config");
+
+const { arterra, blueStone, chateauMorrisette, eightSixEight } = urls;
+const { getBottleNames, setDataByBottleName } = helper;
 
 const fetchData = async siteURL => {
   const result = await axios.get(siteURL);
   return cheerio.load(result.data);
 };
 
-const setResults = async () => {
-  const data = await fetchData(site1);
-  const data1 = await fetchData(site2);
-  const data2 = await fetchData(site3);
+const setFetchResults = async scrapeData => {
+  const { website, elements } = scrapeData;
+  const { wrapper, name, description } = elements;
 
-  const bottleNames = data(".prod-name")
-    .text()
-    .trim()
-    .split("  ")
-    .filter(name => name.length > 0);
+  if (typeof website === "object") {
+    // if website is an array of strings
+    website.forEach(async url => {
+      const data = await fetchData(url).catch(e =>
+        console.log("error in setFetchResults()", e)
+      );
 
-  const test = data(".prod-summary");
+      debugger;
 
-  // debugger;
+      const bottles = data(wrapper).map((index, node) => {
+        const allNames = getBottleNames(data, node, name);
+        const results = setDataByBottleName(data, node, description, allNames);
 
-  //   return $(".prod-summary").map(node => {
-  //     debugger;
+        return results;
+      });
 
-  //     const postJobButton = $(".top > .action-post-job").text();
-  //   });
+      return bottles;
+    });
+  }
 
-  return bottleNames.map(async name => {
-    const bottleName = name.trim();
+  if (typeof website === "string") {
+    // if website is a string
+    const data = await fetchData(website).catch(e =>
+      console.log("error in setFetchResults()", e)
+    );
 
-    const data = await fetchData();
-    const desc = data(".prod-summary div").map;
-  });
-  //   bottleNames.trim().split("  ").filter(name => name !== " " || "" )
-  //bottleNames.trim()
-  //   const bottleDescription = data(".prod-content")
-  //     .text()
-  //     .split("  ")
-  //     .filter(name => name.length > 2);
+    const bottles = data(wrapper).map((index, node) => {
+      const allNames = getBottleNames(data, node, name);
+      const results = setDataByBottleName(data, node, description, allNames);
+
+      return results;
+    });
+
+    return bottles;
+  }
 };
 
-setResults();
+const getAllWineInfo = async () => {
+  /**
+   * TODO:
+   * use Promise.all() to resolve all of these promises!
+   */
+  const allResults = await Promise.all([
+    // setFetchResults({
+    //   website: arterra,
+    //   elements: {
+    //     wrapper: ".wine-card-wrapper.clearfix > .wine-card.clearfix",
+    //     name: ".wine-info > h2",
+    //     description: ".wine-info > .wine-detail"
+    //   }
+    // }),
+    // setFetchResults({
+    //   website: blueStone,
+    //   elements: {
+    //     wrapper: ".wsite-elements .paragraph > font",
+    //     name: "strong",
+    //     description: ""
+    //   }
+    // }),
+    // setFetchResults({
+    //   website: cardinalPoint,
+    //   elements: {
+    //     wrapper: ".wrapper > .clearfix > table > tbody > tr",
+    //     name: ".WineName",
+    //     description: ".WineDescription"
+    //   }
+    // }),
+    setFetchResults({
+      website: chateauMorrisette,
+      elements: {
+        wrapper: "",
+        name: "",
+        description: ""
+      }
+    })
+    // setFetchResults({
+    //   website: eightSixEight,
+    //   elements: {
+    //     wrapper: ".shop-holder > .data > .productItem",
+    //     name: ".prod-name",
+    //     description: ".prod-content"
+    //   }
+    // })
+  ]).then(([// arterra,
+    // blueStone,
+    // cardinalPoint,
+    chateauMorrisette]) => ({
+    // eightSixEight,
+    // arterra,
+    // blueStone,
+    // cardinalPoint,
+    chateauMorrisette
+    // eightSixEight,
+  }));
+
+  return allResults;
+};
+
+getAllWineInfo();
