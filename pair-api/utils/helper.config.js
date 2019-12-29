@@ -38,7 +38,7 @@ const getIndividualBottleDescription = (
 };
 
 const setDataByBottleName = (data, node, description, allNames) => {
-  if (typeof allNames === "string") {
+  if (typeof allNames === "string" && allNames.length) {
     // if there's one bottle
 
     let bottleName = allNames;
@@ -54,7 +54,9 @@ const setDataByBottleName = (data, node, description, allNames) => {
       description: bottleDescription
     };
     return bottleInfo;
-  } else {
+  }
+
+  if (typeof allNames === "object") {
     // if there's an array of bottles
 
     let allBottles = [];
