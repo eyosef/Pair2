@@ -99,17 +99,15 @@ const getAllWineInfo = async () => {
     //     description: ".prod-content"
     //   }
     // })
-  ]).then((
-    [
-      // arterra,
-      // blueStone,
-      // cardinalPoint,
-      // eightSixEight,
-    ]
-  ) => ({
+  ]).then(([// arterra,
+    // blueStone,
+    // cardinalPoint,
+    chateauMorrisette]) => ({
+    // eightSixEight,
     // arterra,
     // blueStone,
     // cardinalPoint,
+    chateauMorrisette
     // eightSixEight,
   }));
 
