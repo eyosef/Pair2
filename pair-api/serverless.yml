@@ -4,7 +4,7 @@ plugins:
 service: pair-api
 
 provider:
-  name: aws #Define the cloud provider to use
+  name: aws
   runtime: nodejs10.x
   stage: dev
   region: us-east-1
@@ -23,7 +23,7 @@ provider:
 functions:
   app:
     handler: app.handler
-    events: #Define the events that trigger the lambda
+    events:
       - http:
           method: GET
           path: /pair/wine
@@ -38,7 +38,6 @@ resources:
           - AttributeName: name
             AttributeType: S
         KeySchema:
-          # TODO: build schema that reflects wine bottle
           - AttributeName: name
             KeyType: HASH
         ProvisionedThroughput:

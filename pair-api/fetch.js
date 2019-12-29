@@ -1,56 +1,48 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
 
-const urls = require("./utils/url.config");
-const helper = require("./utils/helper.config");
-
-const { arterra } = urls;
-const { getBottleNames, setDataByBottleName } = helper;
+const site1 = "http://868estatevineyards.orderport.net/wines/New-Releases";
+const site2 = "(https://www.arterrawines.com/wine-store/)";
+const site3 = "https://www.bluestonevineyard.com/wine.html";
 
 const fetchData = async siteURL => {
   const result = await axios.get(siteURL);
   return cheerio.load(result.data);
 };
 
-const setFetchResults = async scrapeData => {
-  const { website, elements } = scrapeData;
-  const { wrapper, name, description } = elements;
+const setResults = async () => {
+  const data = await fetchData(site1);
+  const data1 = await fetchData(site2);
+  const data2 = await fetchData(site3);
 
-  const data = await fetchData(website).catch(e =>
-    console.log("error in setFetchResults()", e)
-  );
+  const bottleNames = data(".prod-name")
+    .text()
+    .trim()
+    .split("  ")
+    .filter(name => name.length > 0);
 
-  const bottles = data(wrapper).map((index, node) => {
-    const allNames = getBottleNames(data, node, name);
-    const results = setDataByBottleName(data, node, description, allNames);
+  const test = data(".prod-summary");
 
-    return results;
+  // debugger;
+
+  //   return $(".prod-summary").map(node => {
+  //     debugger;
+
+  //     const postJobButton = $(".top > .action-post-job").text();
+  //   });
+
+  return bottleNames.map(async name => {
+    const bottleName = name.trim();
+
+    const data = await fetchData();
+    const desc = data(".prod-summary div").map;
   });
-
-  return bottles;
+  //   bottleNames.trim().split("  ").filter(name => name !== " " || "" )
+  //bottleNames.trim()
+  //   const bottleDescription = data(".prod-content")
+  //     .text()
+  //     .split("  ")
+  //     .filter(name => name.length > 2);
 };
 
-const getAllWineInfo = async () => {
-  const allResults = await Promise.all([
-    setFetchResults({
-      website: arterra,
-      elements: {
-        wrapper: ".wine-card-wrapper.clearfix > .wine-card.clearfix",
-        name: ".wine-info > h2",
-        description: ".wine-info > .wine-detail"
-      }
-    })
-  ]).then(([arterra]) => ({
-    // blueStone,
-    // cardinalPoint,
-    // eightSixEight,
-    arterra
-    // blueStone,
-    // cardinalPoint,
-    // eightSixEight,
-  }));
-
-  return allResults;
-};
-
-getAllWineInfo();
+setResults();
